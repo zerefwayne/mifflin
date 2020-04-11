@@ -102,7 +102,7 @@ func ManageServices(cmd string, service string) {
 			if selectedAll {
 
 				for _, subService := range subServices {
-					StartUtil(subService)
+					StopUtil(subService)
 				}
 
 			} else {
