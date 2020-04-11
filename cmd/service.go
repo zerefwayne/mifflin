@@ -26,9 +26,11 @@ var serviceCmd = &cobra.Command{
 	Short: "service is used to manage the services of your system",
 	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
+
 		option := args[0]
 		serviceName := args[1]
-		service.ManageService(option, serviceName)
+		service.ManageServices(option, serviceName)
+
 	},
 }
 
