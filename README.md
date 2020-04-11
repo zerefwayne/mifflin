@@ -1,4 +1,6 @@
-# Mifflin is a friendly linux system manager
+# Mifflin
+
+Mifflin is a friendly linux system manager
 
 ### Available Commands
 
