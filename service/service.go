@@ -53,7 +53,7 @@ func StopUtil(subService string) {
 
 }
 
-func ManageService(service string, cmd string) {
+func ManageService(cmd string, service string) {
 
 	subServices := Services[service]
 
