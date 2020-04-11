@@ -2,24 +2,10 @@ package service
 
 import (
 	"fmt"
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/zerefwayne/mifflin/utils"
 	"log"
 )
-
-var Services map[string][]string
-
-
-func init() {
-
-	Services = make(map[string][]string)
-
-	Services["docker"] = append(Services["docker"], "docker")
-	Services["docker"] = append(Services["docker"], "docker.service")
-
-	Services["postgresql"] = append(Services["postgresql"], "postgresql")
-	Services["postgresql"] = append(Services["postgresql"], "postgresql.service")
-
-}
 
 
 func StatusUtil(subService string) {
@@ -27,7 +13,7 @@ func StatusUtil(subService string) {
 	if out, err := utils.CommandExec(fmt.Sprintf("systemctl show -p ActiveState %s", subService)); err != nil {
 		log.Fatal(err)
 	} else {
-		log.Println(string(out[:]))
+		log.Printf("%s | %s", subService, string(out[:]))
 	}
 
 }
@@ -37,7 +23,7 @@ func StartUtil(subService string) {
 	if _, err := utils.CommandExec(fmt.Sprintf("sudo systemctl start %s", subService)); err != nil {
 		log.Fatal(err)
 	} else {
-		log.Printf("%s | started successfully.\n\n", subService)
+		log.Printf("%s | started successfully.\n", subService)
 	}
 
 }
@@ -47,31 +33,86 @@ func StopUtil(subService string) {
 	if _, err := utils.CommandExec(fmt.Sprintf("sudo systemctl stop %s", subService)); err != nil {
 		log.Fatal(err)
 	} else {
-		log.Printf("%s | stopped successfully.\n\n", subService)
+		log.Printf("%s | stopped successfully.\n", subService)
 	}
 
 
 }
 
-func ManageService(cmd string, service string) {
+func Find(slice []string, val string) (int, bool) {
+	for i, item := range slice {
+		if item == val {
+			return i, true
+		}
+	}
+	return -1, false
+}
 
-	subServices := Services[service]
+func ManageServices(cmd string, service string) {
+
+	subServices := utils.FetchSubServices(service)
+	options := append([]string{"all"}, subServices...)
+
+	var selectedSubServices []string
 
 	switch cmd{
 		case "status":
 			for _, subService := range subServices {
 				StatusUtil(subService)
 			}
+			fmt.Println()
 			break
 		case "start":
-			for _, subService := range subServices {
-				StartUtil(subService)
+
+			prompt := &survey.MultiSelect{
+				Message: "Select the services to start",
+				Options: options,
 			}
+
+			_ = survey.AskOne(prompt, &selectedSubServices)
+
+			_, selectedAll := Find(selectedSubServices, "all")
+
+			if selectedAll {
+
+				for _, subService := range subServices {
+					StartUtil(subService)
+				}
+
+			} else {
+
+				for _, subService := range selectedSubServices {
+					StartUtil(subService)
+				}
+
+			}
+
 			break
+
 		case "stop":
-			for _, subService := range subServices {
-				StopUtil(subService)
+			prompt := &survey.MultiSelect{
+				Message: "Select the services to stop",
+				Options: options,
 			}
+
+			_ = survey.AskOne(prompt, &selectedSubServices)
+
+			_, selectedAll := Find(selectedSubServices, "all")
+
+			if selectedAll {
+
+				for _, subService := range subServices {
+					StopUtil(subService)
+				}
+
+			} else {
+
+				for _, subService := range selectedSubServices {
+					StopUtil(subService)
+				}
+
+			}
+
 			break
 	}
 
