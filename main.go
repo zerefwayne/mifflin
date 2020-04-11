@@ -1,10 +1,9 @@
 package main
 
 import (
-	"github.com/zerefwayne/mifflin/service"
+	"github.com/zerefwayne/mifflin/cmd"
 )
 
 func main() {
-
-	service.ManageService("postgresql", "status")
+	cmd.Execute()
 }
