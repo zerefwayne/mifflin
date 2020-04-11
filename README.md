@@ -6,4 +6,4 @@ Mifflin is a friendly linux system manager
 
 #### service [start|stop|status] [service-name]
 
-![Service Command Example](.github/screenshots/service_v1.png)
+![Service Command Example](.github/screenshots/service_demo_v1.gif)
