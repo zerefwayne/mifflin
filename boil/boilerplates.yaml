@@ -1,0 +1,23 @@
+# A config file of all the boilerplates available for download
+
+boilerplates:
+  go-psql-rest:
+      name: "Go PostgreSQL Rest API"
+      description: "A Rest API Written in Golang (Mux) and PostgreSQL used as database."
+      repository: "https://github.com/mifflin-org/bp-go-psql-rest.git"
+      dependencies:
+        - "go"
+        - "postgres"
+      optional-dependencies:
+        - "docker"
+      updated-on: "5 April 2020"
+  go-psql-rest-jwt:
+      name: "Go PostgreSQL Rest API secured via Local Auth and JWT"
+      description: "A Rest API Written in Golang (Mux) and PostgreSQL used as database, secured by Local Authentication and JWT"
+      repository: "https://github.com/mifflin-org/bp-go-psql-rest-jwt.git"
+      dependencies:
+        - "go"
+        - "postgres"
+      optional-dependencies:
+        - "docker"
+      updated-on: "5 April 2020"
