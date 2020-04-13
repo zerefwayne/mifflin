@@ -1,18 +1,8 @@
 ![](.github/screenshots/banner.png)
 
-Mifflin is a friendly linux system manager
+Mifflin is a modern boilerplate generator
 
 ### Available Commands
-
-### service [start|stop|status] [service-name]
-
-:warning: Under development.
-
-Service command is used to manage the current services installed on the system.
-
-It is a wrapper over the ```systemctl``` command and provides improved functionalities like pattern matching and improved user experience.
-
-![Service Command Example](.github/screenshots/service_demo_v1.gif)
 
 ### warehouse
 
