@@ -20,4 +20,4 @@ It is a wrapper over the ```systemctl``` command and provides improved functiona
 
 Warehouse command can be used to generate your next project from our warehouse of boilerplates.
 
-![Warehouse Command Example](.github/screenshots/warehouse_v0.gif)
+![Warehouse Command Example](.github/screenshots/warehouse_v1.gif)
