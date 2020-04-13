@@ -94,7 +94,7 @@ func inputProjectName() (string, error) {
 
 }
 
-func installBoilerplate(boilerplate boilerplateConfig) {
+func fetchBoilerplate(boilerplate boilerplateConfig) {
 
 	var projectName string
 
@@ -116,7 +116,7 @@ func installBoilerplate(boilerplate boilerplateConfig) {
 
 }
 
-func LoadBoilerplates() {
+func InstallBoilerplate() {
 
 	var availableBoilerplates yamlConfig
 	var selectedBoilerplate boilerplateConfig
@@ -135,6 +135,6 @@ func LoadBoilerplates() {
 
 	outputBoilerplateData(selectedBoilerplate)
 
-	installBoilerplate(selectedBoilerplate)
+	fetchBoilerplate(selectedBoilerplate)
 
 }

@@ -26,7 +26,7 @@ var boilCmd = &cobra.Command{
 	Use:   "warehouse",
 	Short: "generate your next project from our warehouse of boilerplates",
 	Run: func(cmd *cobra.Command, args []string) {
-		warehouse.LoadBoilerplates()
+		warehouse.InstallBoilerplate()
 	},
 }
 
