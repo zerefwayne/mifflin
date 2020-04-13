@@ -14,10 +14,10 @@ It is a wrapper over the ```systemctl``` command and provides improved functiona
 
 ![Service Command Example](.github/screenshots/service_demo_v1.gif)
 
-### boil
+### warehouse
 
 :warning: Under development.
 
-Boil command can be used to download your favourite boilerplate and install on your system.
+Warehouse command can be used to generate your next project from our warehouse of boilerplates.
 
 ![Boil Command Example](.github/screenshots/boil_v0.gif)
