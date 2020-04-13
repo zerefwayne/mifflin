@@ -1,4 +1,4 @@
-package boil
+package warehouse
 
 import (
 	"fmt"
@@ -24,7 +24,7 @@ type yamlConfig struct {
 
 func LoadBoilerplates() {
 
-	if yamlFile, err := ioutil.ReadFile("/home/zerefwayne/github/personal/mifflin/boil/boilerplates.yaml"); err != nil {
+	if yamlFile, err := ioutil.ReadFile("/home/zerefwayne/github/personal/mifflin/warehouse/boilerplates.yaml"); err != nil {
 		log.Fatal(err)
 	} else {
 		var data yamlConfig

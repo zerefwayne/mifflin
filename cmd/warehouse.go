@@ -16,17 +16,17 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/zerefwayne/mifflin/boil"
+	"github.com/zerefwayne/mifflin/warehouse"
 
 	"github.com/spf13/cobra"
 )
 
-// boilCmd represents the boil command
+// boilCmd represents the warehouse command
 var boilCmd = &cobra.Command{
-	Use:   "boil",
-	Short: "generate a fully functional boilerplate for your next project",
+	Use:   "warehouse",
+	Short: "generate your next project from our warehouse of boilerplates",
 	Run: func(cmd *cobra.Command, args []string) {
-		boil.LoadBoilerplates()
+		warehouse.LoadBoilerplates()
 	},
 }
 
