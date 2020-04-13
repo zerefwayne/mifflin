@@ -1,4 +1,4 @@
-# Mifflin
+![](.github/screenshots/banner.png)
 
 Mifflin is a friendly linux system manager
 
