@@ -23,7 +23,7 @@ func CommandGenerator(cmd string) (string, []string) {
 
 }
 
-func CommandExec(cmd string) ([]byte, error){
+func CommandExec(cmd string) ([]byte, error) {
 
 	var response []byte
 
@@ -45,4 +45,3 @@ func CommandRunner(cmd string) {
 	}
 
 }
-

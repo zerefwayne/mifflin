@@ -24,7 +24,7 @@ import (
 var serviceCmd = &cobra.Command{
 	Use:   "service [option] [service-name]",
 	Short: "service is used to manage the services of your system",
-	Args: cobra.ExactArgs(2),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 
 		option := args[0]

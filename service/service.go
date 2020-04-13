@@ -7,7 +7,6 @@ import (
 	"log"
 )
 
-
 func StatusUtil(subService string) {
 
 	if out, err := utils.CommandExec(fmt.Sprintf("systemctl show -p ActiveState %s", subService)); err != nil {
@@ -36,7 +35,6 @@ func StopUtil(subService string) {
 		log.Printf("%s | stopped successfully.\n", subService)
 	}
 
-
 }
 
 func Find(slice []string, val string) (int, bool) {
@@ -55,65 +53,65 @@ func ManageServices(cmd string, service string) {
 
 	var selectedSubServices []string
 
-	switch cmd{
-		case "status":
+	switch cmd {
+	case "status":
+		for _, subService := range subServices {
+			StatusUtil(subService)
+		}
+		fmt.Println()
+		break
+	case "start":
+
+		prompt := &survey.MultiSelect{
+			Message: "Select the services to start",
+			Options: options,
+		}
+
+		_ = survey.AskOne(prompt, &selectedSubServices)
+
+		_, selectedAll := Find(selectedSubServices, "all")
+
+		if selectedAll {
+
 			for _, subService := range subServices {
-				StatusUtil(subService)
-			}
-			fmt.Println()
-			break
-		case "start":
-
-			prompt := &survey.MultiSelect{
-				Message: "Select the services to start",
-				Options: options,
+				StartUtil(subService)
 			}
 
-			_ = survey.AskOne(prompt, &selectedSubServices)
+		} else {
 
-			_, selectedAll := Find(selectedSubServices, "all")
-
-			if selectedAll {
-
-				for _, subService := range subServices {
-					StartUtil(subService)
-				}
-
-			} else {
-
-				for _, subService := range selectedSubServices {
-					StartUtil(subService)
-				}
-
+			for _, subService := range selectedSubServices {
+				StartUtil(subService)
 			}
 
-			break
+		}
 
-		case "stop":
-			prompt := &survey.MultiSelect{
-				Message: "Select the services to stop",
-				Options: options,
+		break
+
+	case "stop":
+		prompt := &survey.MultiSelect{
+			Message: "Select the services to stop",
+			Options: options,
+		}
+
+		_ = survey.AskOne(prompt, &selectedSubServices)
+
+		_, selectedAll := Find(selectedSubServices, "all")
+
+		if selectedAll {
+
+			for _, subService := range subServices {
+				StopUtil(subService)
 			}
 
-			_ = survey.AskOne(prompt, &selectedSubServices)
+		} else {
 
-			_, selectedAll := Find(selectedSubServices, "all")
-
-			if selectedAll {
-
-				for _, subService := range subServices {
-					StopUtil(subService)
-				}
-
-			} else {
-
-				for _, subService := range selectedSubServices {
-					StopUtil(subService)
-				}
-
+			for _, subService := range selectedSubServices {
+				StopUtil(subService)
 			}
 
-			break
+		}
+
+		break
 	}
 
 }

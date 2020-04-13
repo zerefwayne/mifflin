@@ -7,9 +7,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use: "mifflin",
+	Use:   "mifflin",
 	Short: "Mifflin is a friendly linux system manager",
-	Run: func (cmd *cobra.Command, args []string) {
+	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Mifflin has started")
 	},
 }
